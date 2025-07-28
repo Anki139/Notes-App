@@ -12,7 +12,7 @@ const Login = () => {
   const [otp, setOtp] = useState("");
   const [error, setError] = useState("");
   const [otpSent, setOtpSent] = useState(false);
-
+console.log(otpSent);
   const handleSendOtp = async () => {
     if (!email) {
       setError("Please enter email.");
