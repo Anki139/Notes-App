@@ -1,69 +1,118 @@
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# 📝 Full Stack Note Taking App
 
-Currently, two official plugins are available:
+A full-stack web app built with React, TypeScript, Node.js, Express, MySQL, and JWT authentication. Users can sign up, log in via OTP or Google, create, update, and delete personal notes.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 🚀 Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Frontend
+- React + Vite + TypeScript
+- Axios
+- TailwindCSS
+- React Router
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### Backend
+- Node.js + Express
+- MySQL
+- JWT for authentication
+- nodemailer for OTP
+- dotenv for environment variables
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 📁 Project Structure
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+root/
+│
+├── client/ # React frontend
+│ ├── src/
+│ │ ├── pages/
+│ │ ├── context/ # AuthContext
+│ │ └── ...
+│ └── index.html
+│
+├── server/ # Express backend
+│ ├── controllers/
+│ ├── routes/
+│ ├── middleware/
+│ ├── config/
+│ └── index.ts
+│
+└── README.md
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+yaml
+Copy
+Edit
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+---
+
+## 🧪 Features
+
+- 🔐 Login with OTP or Google
+- ✍️ Create, view, edit, delete notes
+- 🛡 Auth protected routes (JWT)
+- 📂 Full-stack architecture
+- 📦 Persistent login with localStorage
+
+---
+
+## ⚙️ How to Run
+
+### 🔧 Backend (server)
+
+```bash
+cd server
+npm install
+npm run dev
+Make sure .env has your DB credentials and JWT secret.
+
+🌐 Frontend (client)
+bash
+Copy
+Edit
+cd client
+npm install
+npm run dev
+🔑 Environment Variables (example)
+.env (in server/)
+ini
+Copy
+Edit
+PORT=4000
+DB_HOST=localhost
+DB_USER=root
+DB_PASSWORD=yourpassword
+DB_NAME=notes_app
+JWT_SECRET=supersecretjwtkey
+EMAIL_USER=your.email@example.com
+EMAIL_PASS=your_email_password
+📬 API Endpoints
+POST /api/auth/signup
+
+POST /api/auth/login
+
+POST /api/auth/verify
+
+GET /api/notes
+
+POST /api/notes
+
+PUT /api/notes/:id
+
+DELETE /api/notes/:id
+
+🧠 Future Enhancements
+🗂 Notes categorization / labels
+
+🔍 Search functionality
+
+🌙 Dark mode
+
+🖼 Image uploads
+
+👨‍💻 Author
+Ankit Chauhan
