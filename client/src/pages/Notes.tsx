@@ -30,7 +30,7 @@ const Notes = () => {
   const fetchNotes = async () => {
     setLoading(true);
     try {
-      const res = await axios.get("http://localhost:4000/api/notes", {
+      const res = await axios.get("https://notes-app-gkes.onrender.com/api/notes", {
         headers: { Authorization: `Bearer ${token}` },
       });
       console.log("Fetched Notes Response:", res.data);
@@ -50,7 +50,7 @@ const Notes = () => {
     try {
       if (editingId) {
         await axios.put(
-          `http://localhost:4000/api/notes/${editingId}`,
+          `https://notes-app-gkes.onrender.com/api/notes/${editingId}`,
           { title, content },
           { headers: { Authorization: `Bearer ${token}` } }
         );
@@ -74,7 +74,7 @@ const Notes = () => {
 
   const handleDelete = async (id: number) => {
     try {
-      await axios.delete(`http://localhost:4000/api/notes/${id}`, {
+      await axios.delete(`https://notes-app-gkes.onrender.com/api/notes/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       fetchNotes();
