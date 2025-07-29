@@ -56,7 +56,7 @@ const Notes = () => {
         );
       } else {
         await axios.post(
-          "http://notes-app-gkes.onrender.com/api/notes",
+          "https://notes-app-gkes.onrender.com/api/notes",
           { title, content },
           { headers: { Authorization: `Bearer ${token}` } }
         );
