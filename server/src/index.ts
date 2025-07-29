@@ -8,7 +8,13 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 4000;
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://notes-frontend-akcl.onrender.com", // ✅ your frontend domain
+    credentials: true, // ✅ if using cookies or Authorization headers
+  })
+);
+
 app.use(express.json());
 
 app.use("/api/auth", authRoutes);
