@@ -23,7 +23,7 @@ const Signup = () => {
 
     try {
       await axios.post(`${API}/api/auth/send-otp`, { email, username });
-      navigate("/verify", { state: { email } });
+      navigate("/Login", { state: { email } });
     } catch (err: any) {
       setError(err.response?.data?.message || "Failed to send OTP.");
     }
