@@ -1,12 +1,8 @@
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
-<<<<<<< HEAD
 import rightColumn from "../assets/right-column.png";
 
-=======
-import rightColumn from "../assets/right-column.png"; // replace with your logo
->>>>>>> cd2259ba4aefc3e07b8380deb357805b9b39f75c
 const API = import.meta.env.VITE_API_URL; // ✅ Define it once here
 
 const Login = () => {
@@ -26,11 +22,7 @@ console.log(otpSent)
     }
 
     try {
-<<<<<<< HEAD
       await axios.post(`${API}/api/auth/send-otp`, { email }); // ✅ Correct template literal
-=======
-      await axios.post(`${API}/api/auth/send-otp`, { email });
->>>>>>> cd2259ba4aefc3e07b8380deb357805b9b39f75c
       setOtpSent(true);
       setError("");
     } catch (err: any) {
@@ -45,11 +37,7 @@ console.log(otpSent)
     }
 
     try {
-<<<<<<< HEAD
       const res = await axios.post(`${API}/api/auth/verify-otp`, { // ✅ Correct template literal
-=======
-       const res = await axios.post(`${API}/api/auth/verify-otp`, { 
->>>>>>> cd2259ba4aefc3e07b8380deb357805b9b39f75c
         email,
         otp,
       });
