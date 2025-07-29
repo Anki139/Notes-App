@@ -5,7 +5,10 @@ import { AuthRequest } from "../middleware/verifyToken";
 // ✅ GET all notes for logged-in user
 export const getNotes = async (req: AuthRequest, res: Response) => {
   try {
-    const [rows]: any = await db.query("SELECT * FROM notes WHERE user_id = $1", [req.user!.id]);
+    const { rows } = await db.query(
+      "SELECT * FROM notes WHERE user_id = $1",
+      [req.user!.id]
+    );
     res.status(200).json(rows);
   } catch (err) {
     console.error("Get Notes Error:", err);
@@ -21,11 +24,10 @@ export const createNote = async (req: AuthRequest, res: Response) => {
   }
 
   try {
-    await db.query("INSERT INTO notes (user_id, title, content) VALUES ($1,$2,$3)", [
-      req.user!.id,
-      title,
-      content,
-    ]);
+    await db.query(
+      "INSERT INTO notes (user_id, title, content) VALUES ($1, $2, $3)",
+      [req.user!.id, title, content]
+    );
     res.status(201).json({ message: "Note created successfully." });
   } catch (err) {
     console.error("Create Note Error:", err);
@@ -55,7 +57,10 @@ export const deleteNote = async (req: AuthRequest, res: Response) => {
   const noteId = req.params.id;
 
   try {
-    await db.query("DELETE FROM notes WHERE id = $1 AND user_id = $2", [noteId, req.user!.id]);
+    await db.query(
+      "DELETE FROM notes WHERE id = $1 AND user_id = $2",
+      [noteId, req.user!.id]
+    );
     res.status(200).json({ message: "Note deleted successfully." });
   } catch (err) {
     console.error("Delete Note Error:", err);
