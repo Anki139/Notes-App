@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
-import rightColumn from "../assets/right-column.png"; // replace with your logo
+import rightColumn from "../assets/right-column.png";
+
+const API = import.meta.env.VITE_API_URL; // ✅ Define it once here
 
 const Login = () => {
   const navigate = useNavigate();
@@ -12,7 +14,7 @@ const Login = () => {
   const [otp, setOtp] = useState("");
   const [error, setError] = useState("");
   const [otpSent, setOtpSent] = useState(false);
-console.log(otpSent);
+console.log(otpSent)
   const handleSendOtp = async () => {
     if (!email) {
       setError("Please enter email.");
@@ -20,7 +22,7 @@ console.log(otpSent);
     }
 
     try {
-      await axios.post("http://localhost:4000/api/auth/send-otp", { email });
+      await axios.post(`${API}/api/auth/send-otp`, { email }); // ✅ Correct template literal
       setOtpSent(true);
       setError("");
     } catch (err: any) {
@@ -35,7 +37,7 @@ console.log(otpSent);
     }
 
     try {
-      const res = await axios.post("http://localhost:4000/api/auth/verify-otp", {
+      const res = await axios.post(`${API}/api/auth/verify-otp`, { // ✅ Correct template literal
         email,
         otp,
       });
@@ -49,6 +51,8 @@ console.log(otpSent);
       setError(err.response?.data?.message || "OTP verification failed.");
     }
   };
+
+
 
   return (
     <div className="min-h-screen flex flex-col md:flex-row bg-white">
