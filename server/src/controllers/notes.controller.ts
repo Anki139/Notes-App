@@ -5,7 +5,7 @@ import { AuthRequest } from "../middleware/verifyToken";
 // ✅ GET all notes for logged-in user
 export const getNotes = async (req: AuthRequest, res: Response) => {
   try {
-    const [rows]: any = await db.query("SELECT * FROM notes WHERE user_id = ?", [req.user!.id]);
+    const [rows]: any = await db.query("SELECT * FROM notes WHERE user_id = $1", [req.user!.id]);
     res.status(200).json(rows);
   } catch (err) {
     console.error("Get Notes Error:", err);
@@ -21,7 +21,7 @@ export const createNote = async (req: AuthRequest, res: Response) => {
   }
 
   try {
-    await db.query("INSERT INTO notes (user_id, title, content) VALUES (?, ?, ?)", [
+    await db.query("INSERT INTO notes (user_id, title, content) VALUES ($1,$2,$3)", [
       req.user!.id,
       title,
       content,
@@ -40,7 +40,7 @@ export const updateNote = async (req: AuthRequest, res: Response) => {
 
   try {
     await db.query(
-      "UPDATE notes SET title = ?, content = ? WHERE id = ? AND user_id = ?",
+      "UPDATE notes SET title = $1, content = $2 WHERE id = $3 AND user_id = $4",
       [title, content, noteId, req.user!.id]
     );
     res.status(200).json({ message: "Note updated successfully." });
@@ -55,7 +55,7 @@ export const deleteNote = async (req: AuthRequest, res: Response) => {
   const noteId = req.params.id;
 
   try {
-    await db.query("DELETE FROM notes WHERE id = ? AND user_id = ?", [noteId, req.user!.id]);
+    await db.query("DELETE FROM notes WHERE id = $1 AND user_id = $2", [noteId, req.user!.id]);
     res.status(200).json({ message: "Note deleted successfully." });
   } catch (err) {
     console.error("Delete Note Error:", err);
